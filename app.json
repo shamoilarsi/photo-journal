@@ -1,0 +1,12 @@
+{
+  "name": "PhotoJournal",
+  "displayName": "PhotoJournal",
+  "expo": {
+    "name": "PhotoJournal",
+    "slug": "PhotoJournal",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
