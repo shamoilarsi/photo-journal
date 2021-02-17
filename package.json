@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "expo": "~40.0.0",
+    "expo-camera": "~9.1.0",
     "expo-splash-screen": "~0.8.0",
     "expo-status-bar": "~1.0.3",
     "expo-updates": "~0.4.0",
@@ -29,6 +30,19 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets"
+    ]
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "trailingComma": "es5",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": true
   },
   "private": true
 }

@@ -63,3 +63,4 @@ buck-out/
 .expo/*
 web-build/
 .vscode
+android/java_pid*.hprof
