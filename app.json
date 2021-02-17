@@ -5,6 +5,9 @@
     "name": "PhotoJournal",
     "slug": "PhotoJournal",
     "version": "1.0.0",
-    "assetBundlePatterns": ["**/*"]
+    "assetBundlePatterns": ["**/*"],
+    "splash": {
+      "image": "./assets/logo.png"
+    }
   }
 }

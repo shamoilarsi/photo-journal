@@ -8,6 +8,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.13.4",
+    "@react-native-community/masked-view": "0.1.10",
+    "@react-navigation/bottom-tabs": "^5.11.7",
+    "@react-navigation/native": "^5.9.2",
+    "@react-navigation/stack": "^5.14.2",
     "expo": "~40.0.0",
     "expo-camera": "~9.1.0",
     "expo-splash-screen": "~0.8.0",
@@ -18,23 +23,29 @@
     "react-native": "~0.63.4",
     "react-native-gesture-handler": "~1.8.0",
     "react-native-reanimated": "~1.13.0",
-    "react-native-screens": "~2.15.0",
+    "react-native-safe-area-context": "3.1.9",
+    "react-native-screens": "~2.15.2",
     "react-native-unimodules": "~0.12.0",
+    "react-native-vector-icons": "^8.0.0",
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "~25.2.6",
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
     "jest": "~25.2.6",
+    "prettier": "^2.2.1",
     "react-test-renderer": "~16.13.1"
   },
   "jest": {
     "preset": "react-native"
-  },
-  "rnpm": {
-    "assets": [
-      "./assets"
-    ]
   },
   "prettier": {
     "printWidth": 120,
