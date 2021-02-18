@@ -5,6 +5,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import TabNavigator from './TabNavigator';
 import CameraView from '../screens/CameraView';
+import DayEditView from '../screens/DayEditView';
+import PhotoView from '../screens/PhotoView';
 
 import Logo from '../../assets/logo.png';
 
@@ -30,6 +32,8 @@ function MainStackNavigator() {
       }}>
       <Stack.Screen name='Home' component={TabNavigator} />
       <Stack.Screen name='CameraView' component={CameraView} />
+      <Stack.Screen name='DayEditView' component={DayEditView} />
+      <Stack.Screen name='PhotoView' component={PhotoView} />
     </Stack.Navigator>
   );
 }
