@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Item from '../../components/Item';
+import FloatingButton from '../../components/FloatingButton';
+
+const { width } = Dimensions.get('screen');
 
 const DayEditView = ({ navigation, route }) => {
   const { image, city, country, temp, timestamp, description, date: key, editable } = route.params;
@@ -12,19 +15,15 @@ const DayEditView = ({ navigation, route }) => {
   useEffect(() => {
     descTimeout = setTimeout(async () => {
       await AsyncStorage.mergeItem(key, JSON.stringify({ description: desc }));
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(descTimeout);
   }, [desc]);
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <Item
-        image={image}
-        city={city}
-        country={country}
-        temp={temp}
-        timestamp={timestamp}
+        data={{ image, city, country, temp, timestamp }}
         onPress={() => {
           navigation.navigate('PhotoView', { image });
         }}
@@ -32,15 +31,21 @@ const DayEditView = ({ navigation, route }) => {
       <TextInput
         multiline
         value={desc}
-        style={{ marginHorizontal: 5 }}
+        editable={editable}
+        style={styles.textInput}
         onChangeText={(t) => setDesc(t)}
         placeholder='Type your thoughts here'
-        editable={editable}
       />
+      {editable && (
+        <FloatingButton icon='camera' onPress={() => navigation.navigate('CameraView')} style={styles.cameraButton} />
+      )}
     </View>
   );
 };
 
 export default DayEditView;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  cameraButton: { left: width / 2 - 45 / 2, top: 184 - 45 / 2, position: 'absolute' },
+  textInput: { marginHorizontal: 5, marginTop: 20, fontFamily: 'InterRegular', fontSize: 16 },
+});

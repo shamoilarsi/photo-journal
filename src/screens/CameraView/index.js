@@ -1,14 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Camera } from 'expo-camera';
 import * as FileSystem from 'expo-file-system';
 
-const { height } = Dimensions.get('screen');
+import FloatingButton from '../../components/FloatingButton';
+import { getFormattedDate } from '../../utilities/common';
+
+const { width } = Dimensions.get('screen');
 
 export default function CameraView({ navigation }) {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
+  const [isCameraReady, setIsCameraReady] = useState(false);
+  const [loading, setLoading] = useState(false);
   const cameraRef = useRef(null);
 
   useEffect(() => {
@@ -19,23 +24,34 @@ export default function CameraView({ navigation }) {
   }, []);
 
   const onCapturePressed = async () => {
-    const date = new Date().toLocaleDateString().replace(/\//g, '-');
+    setLoading(true);
+    const date = getFormattedDate();
     const image = `${FileSystem.documentDirectory}${date}.jpg`;
+    if (!isCameraReady) throw new Error('Camera is not Ready');
+
     const photo = await cameraRef.current.takePictureAsync();
     await FileSystem.moveAsync({
       from: photo.uri,
       to: image,
     });
 
-    const { city, country_name: country, latitude, longitude } = await fetch(
-      `https://geolocation-db.com/json/`
-    ).then((res) => res.json());
+    const { city, country_name: country, latitude, longitude } = await fetch(`https://geolocation-db.com/json/`)
+      .then((res) => res.json())
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
 
     const {
       main: { temp },
     } = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=2cea44491007e0ca9a96133c3cdaae19`
-    ).then((res) => res.json());
+    )
+      .then((res) => res.json())
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
 
     const data = {
       image,
@@ -43,12 +59,11 @@ export default function CameraView({ navigation }) {
       country,
       temp,
       timestamp: Date.now(),
-      description: '',
     };
 
-    // TODO: CHECK IF ALREADY EXISTS, IF YES THEN DONT UPDATE DESC
-    await AsyncStorage.setItem(date, JSON.stringify(data));
-    navigation.navigate('DayEditView', { ...data, date, editable: true });
+    await AsyncStorage.mergeItem(date, JSON.stringify(data));
+    setLoading(false);
+    navigation.navigate('DayView', { ...data, date, editable: true });
   };
 
   if (hasCameraPermission === null) return null;
@@ -60,12 +75,16 @@ export default function CameraView({ navigation }) {
         ref={(ref) => {
           cameraRef.current = ref;
         }}
-        style={{ height }}
+        style={{ height: '100%' }}
         ratio='16:9'
+        onCameraReady={() => setIsCameraReady(true)}
         type={Camera.Constants.Type.back}>
-        <TouchableOpacity onPress={onCapturePressed}>
-          <Text>lele</Text>
-        </TouchableOpacity>
+        <FloatingButton
+          icon='camera'
+          loading={loading}
+          onPress={onCapturePressed}
+          style={{ left: width / 2 - 45 / 2, bottom: 23, position: 'absolute' }}
+        />
       </Camera>
     </View>
   );

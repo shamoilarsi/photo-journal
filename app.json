@@ -4,10 +4,16 @@
   "expo": {
     "name": "PhotoJournal",
     "slug": "PhotoJournal",
+    "icon": "./assets/logo.png",
     "version": "1.0.0",
     "assetBundlePatterns": ["**/*"],
     "splash": {
-      "image": "./assets/logo.png"
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "android": {
+      "package": "com.photojournal"
     }
   }
 }

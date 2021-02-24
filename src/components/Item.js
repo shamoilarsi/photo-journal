@@ -1,13 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-const Item = ({ image: uri, city, country, temp, timestamp }) => {
+const Item = ({ data: { image: uri, temp, country, city, timestamp }, onPress }) => {
   const date = new Date(timestamp);
   return (
     <View>
-      <Image source={{ uri }} style={{ height: 184 }} />
+      <TouchableWithoutFeedback onPress={onPress}>
+        <Image source={{ uri }} style={{ height: 184 }} />
+      </TouchableWithoutFeedback>
       <View style={styles.topLeftDate}>
         <Text style={[styles.text, { fontSize: 14, textAlign: 'center' }]}>{months[date.getMonth()]}</Text>
         <Text style={[styles.text, { fontSize: 24 }]}>{date.getDate()}</Text>
@@ -31,7 +33,7 @@ export default Item;
 const styles = StyleSheet.create({
   topLeftDate: { position: 'absolute', left: 7, top: 5 },
   text: {
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'InterSemiBold',
     color: 'white',
   },
   bottomLeftLocation: {
