@@ -6,7 +6,9 @@
     "slug": "PhotoJournal",
     "icon": "./assets/logo.png",
     "version": "1.0.0",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -14,6 +16,9 @@
     },
     "android": {
       "package": "com.photojournal"
+    },
+    "ios": {
+      "bundleIdentifier": "com.photojournal"
     }
   }
 }

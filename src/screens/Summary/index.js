@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StyleSheet, View, AsyncStorage } from 'react-native';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Item from './components/Item';
 

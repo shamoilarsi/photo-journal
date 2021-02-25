@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, TextInput, Dimensions } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StyleSheet, View, TextInput, Dimensions, AsyncStorage } from 'react-native';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Item from '../../components/Item';
 import FloatingButton from '../../components/FloatingButton';

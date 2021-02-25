@@ -57,5 +57,7 @@
     "bracketSpacing": true,
     "jsxBracketSameLine": true
   },
-  "private": true
+  "private": true,
+  "name": "bigbinary-interview-for-shamoilarsi",
+  "version": "1.0.0"
 }
