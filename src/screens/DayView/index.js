@@ -15,7 +15,7 @@ const DayEditView = ({ navigation, route }) => {
   useEffect(() => {
     descTimeout = setTimeout(async () => {
       await AsyncStorage.mergeItem(key, JSON.stringify({ description: desc }));
-    }, 1000);
+    }, 800);
 
     return () => clearTimeout(descTimeout);
   }, [desc]);
