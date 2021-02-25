@@ -5,7 +5,7 @@ const PhotoView = ({ route }) => {
   const { image: uri } = route.params;
   return (
     <View style={styles.container}>
-      <Image source={{ uri }} style={styles.image} />
+      <Image source={{ uri: `${uri}?${Date.now()}` }} style={styles.image} />
     </View>
   );
 };

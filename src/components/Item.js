@@ -3,12 +3,14 @@ import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-n
 import Feather from 'react-native-vector-icons/Feather';
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-const Item = ({ data: { image: uri, temp, country, city, timestamp }, onPress }) => {
+const Item = ({ data: { image: uri, temp, country, city, timestamp, editable }, onPress }) => {
   const date = new Date(timestamp);
+  let newuri = uri;
+  if (editable) newuri += `?${timestamp}`;
   return (
     <View>
       <TouchableWithoutFeedback onPress={onPress}>
-        <Image source={{ uri }} style={{ height: 184 }} />
+        <Image source={{ uri: newuri }} style={{ height: 184 }} />
       </TouchableWithoutFeedback>
       <View style={styles.topLeftDate}>
         <Text style={[styles.text, { fontSize: 14, textAlign: 'center' }]}>{months[date.getMonth()]}</Text>

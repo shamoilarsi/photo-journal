@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, FlatList, AsyncStorage } from 'react-native';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Item from '../../components/Item';
 import { getFormattedDate } from '../../utilities/common';
@@ -28,7 +28,12 @@ export default function Home({ navigation }) {
   const renderItem = ({ item }) => {
     const [key, data] = item;
     const editable = getFormattedDate() === key;
-    return <Item data={data} onPress={() => navigation.navigate('DayView', { ...data, date: key, editable })} />;
+    return (
+      <Item
+        data={{ ...data, editable }}
+        onPress={() => navigation.navigate('DayView', { ...data, date: key, editable })}
+      />
+    );
   };
 
   const EmptyComponent = (

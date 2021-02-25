@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, TextInput, Dimensions, AsyncStorage } from 'react-native';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StyleSheet, View, TextInput, Dimensions } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Item from '../../components/Item';
 import FloatingButton from '../../components/FloatingButton';
@@ -23,21 +23,19 @@ const DayEditView = ({ navigation, route }) => {
   return (
     <View style={{ flex: 1 }}>
       <Item
-        data={{ image, city, country, temp, timestamp }}
-        onPress={() => {
-          navigation.navigate('PhotoView', { image });
-        }}
+        data={{ image, city, country, temp, timestamp, editable }}
+        onPress={() => navigation.navigate('PhotoView', { image })}
       />
       <TextInput
         multiline
         value={desc}
         editable={editable}
         style={styles.textInput}
-        onChangeText={(t) => setDesc(t)}
+        onChangeText={setDesc}
         placeholder='Type your thoughts here'
       />
       {editable && (
-        <FloatingButton icon='camera' onPress={() => navigation.navigate('CameraView')} style={styles.cameraButton} />
+        <FloatingButton icon='camera' onPress={() => navigation.replace('CameraView')} style={styles.cameraButton} />
       )}
     </View>
   );
