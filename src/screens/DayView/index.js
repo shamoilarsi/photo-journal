@@ -20,6 +20,14 @@ const DayEditView = ({ navigation, route }) => {
     return () => clearTimeout(descTimeout);
   }, [desc]);
 
+  useEffect(() => {
+    (async () => {
+      const { description: d } = JSON.parse(await AsyncStorage.getItem(key));
+      setDesc(d);
+    })();
+    return () => {};
+  }, []);
+
   return (
     <View style={{ flex: 1 }}>
       <Item
