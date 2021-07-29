@@ -1,4 +1,4 @@
-# Pic-A-Day
+# Photo Journal
 
 To run the app,
 run `sudo yarn start` on a terminal
