@@ -1,4 +1,4 @@
-# bigbinary-interview-for-shamoilarsi
+# Pic-A-Day
 
 To run the app,
 run `sudo yarn start` on a terminal
