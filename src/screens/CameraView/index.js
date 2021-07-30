@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { WEATHER_API } from '@env';
 
 import { Camera } from 'expo-camera';
 import * as FileSystem from 'expo-file-system';
@@ -45,7 +46,7 @@ export default function CameraView({ navigation }) {
     const {
       main: { temp },
     } = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=2cea44491007e0ca9a96133c3cdaae19`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${WEATHER_API}`
     )
       .then((res) => res.json())
       .catch((err) => {
